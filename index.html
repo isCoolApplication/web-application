@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="widh=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap/dist/css/bootstrap.min.css">
+	<title>Document</title>
+</head>
+<body ng-app="application">
+	
+	<nav class="navbar navbar-default"  ng-show="show" ng-controller="NavigationCtrl">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation-menu" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+				</button>
+				<span ng-if="navigation.brandName.name && navigation.brandName.abbrevation">
+					<a class="navbar-brand  visible-sm visible-md visible-lg" ng-href="#!{{navigation.brandLink}}">{{ navigation.brandName.name }}</a>
+					<a class="navbar-brand visible-xs hidden-sm" ng-href="#!{{navigation.brandLink}}">{{ navigation.brandName.abbrevation }}</a>
+				</span>
+				<div ng-if="!navigation.brandName.name && !navigation.brandName.abbrevation">
+					<a ng-href="#!{{navigation.brandLink}}" class="navbar-brand">{{ navigation.brandName }}</a>
+				</div>
+			</div>
+
+			<div class="collapse navbar-collapse" id="main-navigation-menu">
+				<ul class="nav navbar-nav navbar-right">
+
+					<li ng-if="navigation.links.length > 0" ng-repeat="nav in navigation.links" ng-class="{'dropdown': nav.hasSub}">
+						
+						<a ng-if="!nav.hasSub" ng-href="#!{{nav.link}}">
+							{{nav.name}} <span ng-if="subNav.link.icon" class="glyphicon {{nav.link.icon}}"></span>
+						</a>
+
+						<a ng-if="nav.hasSub"
+							class="dropdown-toggle"
+							data-toggle="dropdown"
+							role="button"
+							aria-haspopup="true"
+							aria-expanded="false">
+								{{nav.name}} <span class="caret"></span>
+							</a>
+						<ul ng-if="nav.hasSub" class="dropdown-menu">
+							<li ng-repeat="subNav in nav.subLinks">
+								<a ng-href="#!{{subNav.link}}">
+									<span ng-if="subNav.icon" class="glyphicon {{subNav.icon}}"></span>&nbsp;
+									{{subNav.name}} 
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							{{navigation.settings.name}} <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li ng-repeat="link in navigation.settings.links">
+								<a ng-if="link.link" ng-href="#!{{link.link}}">{{link.name}}</a>
+							</li>
+							<li>
+								<a ng-click="logout()">
+									<span class="glyphicon glyphicon-off"></span>&nbsp;Logout
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="ng-view"></div>
+	</div>
+
+	<script type="text/javascript" src="libs/angular/angular.min.js"></script>
+	<script type="text/javascript" src="libs/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="libs/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="app/app.js"></script>
+	<script type="text/javascript" src="app/controllers/navigation.controller.js"></script>
+	<script type="text/javascript" src="app/controllers/login.controller.js"></script>
+	<script type="text/javascript" src="app/controllers/home.controller.js"></script>
+
+	<script type="text/javascript" src="app/services/authenticate.service.js"></script>
+	<script type="text/javascript" src="app/services/navigation.service.js"></script>
+</body>
+</html>

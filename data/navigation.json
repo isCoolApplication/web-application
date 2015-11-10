@@ -1,0 +1,34 @@
+{
+	"operator": [],
+	"administrator":
+		{
+			"brandName": "ADMINISTRATOR",
+			"brandIcon": "none.png",
+			"links": [
+				{
+					"hasSub": true,
+					"name": "Registrations",
+					"subLinks": [
+						{
+							"name": "Instructors",
+							"link": "/instructors"
+						},{
+							"name": "Students",
+							"link": "/students"
+						},{
+							"name": "Operators",
+							"link": "/operators"
+						}
+					]
+				},{
+					"hasSub": false,
+					"name": "Courses",
+					"link": "/courses"
+				},{
+					"hasSub": false,
+					"name": "Subjects",
+					"link": "/subjects"
+				}
+			]
+		}
+}

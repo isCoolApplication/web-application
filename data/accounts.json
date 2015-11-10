@@ -1,0 +1,21 @@
+[
+    {
+        "id": 1,
+        "barcode": "2015101759",
+        "password": "123",
+        "fullname": "Al Lestaire Acasio",
+        "gender": "Male",
+        "type": 1
+    },{
+        "id": 2,
+        "barcode": "2015101760",
+        "password": "123",
+        "fullname": "John Alfred Catampo",
+        "gender": "Male",
+        "department": {
+                "abbrevation" : "CIIT",
+                "name": "College of Industrial Information Technology"
+            },
+        "type": 2
+    }
+]
